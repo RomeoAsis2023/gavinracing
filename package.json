@@ -1,0 +1,22 @@
+{
+  "name": "gavins-car-racing",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "package:site": "npm run build && node scripts/package-site.js",
+    "check": "node --check js/game.js && node --check js/scene.js && node --check js/audio.js && node --check js/leaderboard.js"
+  },
+  "dependencies": {
+    "@fontsource/barlow": "^5.3.0",
+    "@fontsource/barlow-condensed": "^5.3.0",
+    "three": "^0.181.0"
+  },
+  "devDependencies": {
+    "fflate": "^0.8.3",
+    "vite": "^8.3.6"
+  }
+}

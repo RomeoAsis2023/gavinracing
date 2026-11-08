@@ -1,0 +1,7 @@
+node_modules/
+dist/
+gavins-car-racing-site.zip
+LOCAL-SHARING.md
+.env
+.env.*
+!.env.example

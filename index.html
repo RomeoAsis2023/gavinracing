@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101319">
+  <meta name="description" content="Hit the highway in Gavin’s Car Racing, a fast, free browser arcade racer.">
+  <title>Gavin’s Car Racing</title>
+  <link rel="icon" href="assets/logo/logo.png">
+  <link rel="stylesheet" href="css/styles.css?v=remote-audio-3">
+  <script src="js/game.js?v=remote-audio-3" type="module"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <a class="wordmark" href="./" aria-label="Gavin’s Car Racing home"><span class="brand-icon">G<span>↗</span></span><span>GAVIN’S <b>CAR RACING</b></span></a>
+      <span class="edition"><i></i> ARCADE EDITION <span>/ 01</span></span>
+    </header>
+
+    <section class="game-layout" id="race" aria-label="Car racing game">
+      <aside class="intro">
+        <div class="eyebrow"><span></span> THE OPEN ROAD IS CALLING</div>
+        <h1>ALL GAS.<br>NO <em>LIMITS.</em></h1>
+        <p class="intro-copy">One car. An endless highway.<br>Find your gap and chase your best.</p>
+        <div class="record"><span class="record-icon">♛</span><div><span class="label">YOUR PERSONAL BEST</span><strong id="sidebar-best">000000</strong></div><span class="record-unit">PTS</span></div>
+        <div class="instructions">
+          <h2>YOUR KEYS TO THE ROAD</h2>
+          <div class="instruction"><div class="keys"><kbd>←</kbd><kbd>→</kbd></div><span>Steer left & right <small>or use A / D</small></span></div>
+          <div class="instruction"><div class="keys"><kbd>P</kbd><kbd>ESC</kbd></div><span>Take a breather <small>pause your race</small></span></div>
+          <p class="mobile-tip">On mobile? Use the steering buttons below.</p>
+        </div>
+        <div class="tip"><span>↗</span><p><b>KEEP YOUR EYES UP.</b><br>Traffic gets faster. Leave yourself an exit.</p></div>
+      </aside>
+
+      <div class="race-column">
+        <div class="dashboard">
+          <div><span class="label">SCORE</span><strong id="score">000000</strong></div>
+          <div><span class="label">DISTANCE</span><strong><span id="distance">0</span><small> m</small></strong></div>
+          <button id="sound" class="sound-button" aria-label="Mute car sounds" aria-pressed="false" title="Mute car sounds">♪</button>
+          <button id="fullscreen" class="fullscreen-button" aria-label="Enter fullscreen" title="Enter fullscreen">⛶</button>
+          <button id="pause" class="pause-button" aria-label="Pause race" disabled>Ⅱ</button>
+        </div>
+        <div class="track-shell" id="track-shell">
+          <canvas id="track" width="800" height="640" aria-label="3D tree-lined race track. Dodge traffic with arrow keys or A and D."></canvas>
+          <div class="track-vignette"></div>
+          <div class="overlay" id="overlay">
+            <div id="menu-panel" class="panel">
+              <span class="panel-tag">WELCOME TO THE FAST LANE</span>
+              <img class="game-logo" src="assets/logo/logo.png" alt="Gavin’s Car Racing" width="260" height="260">
+              <h2>MAKE THE ROAD YOURS.</h2>
+              <p>Dodge the traffic. Go the distance.<br>Reach 1,000,000 points to cross the finish line.</p>
+              <button id="start" class="primary" disabled>LOADING THE GARAGE…</button>
+              <button id="test-sound" class="secondary">ENABLE / TEST SOUND ♪</button>
+              <span class="panel-footnote" id="load-status" role="status">Getting your ride ready</span>
+            </div>
+            <div id="pause-panel" class="panel" hidden>
+              <span class="panel-tag">PIT STOP</span><h2>TAKE A BREATHER.</h2><p>Your highway will be right here.</p>
+              <button id="resume" class="primary">BACK TO THE RACE <span>↗</span></button>
+              <button class="secondary" id="pause-menu">MAIN MENU</button>
+            </div>
+            <div id="finish-panel" class="panel" hidden>
+              <span class="panel-tag">THE MILLION-POINT CLUB</span>
+              <div class="finish-flag" aria-hidden="true"></div>
+              <h2>YOU MADE IT!</h2>
+              <p>You crossed the finish line.<br>A million points. One incredible ride.</p>
+              <div class="results"><div><span class="label">FINAL SCORE</span><strong>1,000,000</strong></div><div><span class="label">DISTANCE</span><strong id="finish-distance">0 m</strong></div></div>
+              <button id="finish-restart" class="primary">RACE AGAIN <span>↗</span></button>
+              <button id="finish-menu" class="secondary">MAIN MENU</button>
+            </div>
+          </div>
+          <div class="countdown" id="countdown" aria-live="polite" hidden>3</div>
+          <div class="crash-message" id="crash-message" role="status" hidden><strong>BOOM!</strong><span>BACK TO THE START…</span></div>
+          <div class="speed-pill"><span class="speed-light"></span><strong id="speed">0</strong><span>KM/H</span></div>
+          <div class="finish-goal"><div><span>FINISH · 1,000,000 PTS</span><span id="finish-percent">0.0%</span></div><progress id="finish-progress" max="1000000" value="0" aria-label="Progress toward the million-point finish"></progress></div>
+        </div>
+        <div class="track-bottom"><span><i></i> ENDLESS HIGHWAY</span><span>STAY SHARP. DRIVE FAR.</span></div>
+        <div class="touch-controls" aria-label="Touch steering controls"><button id="left" aria-label="Steer left">←</button><a href="#leaderboard" class="leaderboard-link">LEADERBOARD ↓</a><button id="right" aria-label="Steer right">→</button></div>
+        <div id="audio-status" class="audio-status" role="status" hidden></div>
+      </div>
+
+      <aside class="side-rail" aria-hidden="true"><span>BUILT FOR THE CHASE</span><div></div><span>EST. 2026</span></aside>
+    </section>
+    <section id="leaderboard" class="leaderboard" aria-labelledby="leaderboard-title">
+      <div class="leaderboard-heading"><div><div class="eyebrow"><span></span> THE BEST OF THE HIGHWAY</div><h2 id="leaderboard-title">THE <em>LEADERBOARD.</em></h2><p>Your top 10 runs, saved on this device. Make your next race count.</p></div><a class="back-to-race" href="#race">BACK TO THE RACE ↗</a></div>
+      <div class="leaderboard-settings"><label for="driver-name">YOUR DRIVER NAME<input id="driver-name" type="text" maxlength="20" placeholder="You" autocomplete="nickname" spellcheck="false"></label><p>Set your name for your next run.<br>Finish a race to claim your place.</p><span class="local-badge">● LOCAL TOP 10</span></div>
+      <div class="leaderboard-table-wrap"><table class="leaderboard-table"><caption class="sr-only">Ten highest scoring races on this device</caption><thead><tr><th scope="col">RANK</th><th scope="col">DRIVER</th><th scope="col">SCORE</th><th scope="col">DISTANCE</th><th scope="col">DATE</th></tr></thead><tbody id="leaderboard-rows"><tr><td colspan="5" class="leaderboard-empty">The road is yours. Finish your first race to set a score.</td></tr></tbody></table></div>
+      <p class="leaderboard-note" id="leaderboard-status" role="status">Every run is a new chance to go further.</p>
+    </section>
+    <footer><span>GAVIN’S CAR RACING</span><span>NO FINISH LINE. JUST YOUR NEXT BEST.</span><span class="footer-flag">▚ ▚ ▚</span></footer>
+  </main>
+</body>
+</html>
