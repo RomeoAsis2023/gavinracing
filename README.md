@@ -1,5 +1,7 @@
 # Gavin’s Car Racing
 
+**[Play online](https://romeoasis2023.github.io/gavinracing/)**
+
 A responsive HTML5 / WebGL arcade racer made with Three.js, CSS, and JavaScript. Features your original logo, a modeled red sports car, an endless scrolling highway, traffic, increasing difficulty, keyboard and touch steering, pause/resume, and locally saved best scores.
 
 The real 3D scene uses an elevated perspective camera, modeled cars with wheels and windows, low-poly trees, guardrails, sunlight, soft shadows, atmospheric fog, and billboard smoke particles. The player car matches your red-and-white artwork, with the original image used as a hood decal.

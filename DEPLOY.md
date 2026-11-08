@@ -1,5 +1,13 @@
 # Play on other devices
 
+## GitHub Pages
+
+Play at **https://romeoasis2023.github.io/gavinracing/**.
+
+The repository's Pages source is **gh-pages**, folder **/ (root)**. This branch contains the generated production site and a `.nojekyll` marker. The **main** branch contains the editable source.
+
+When updating the game, run `npm run build` and publish the contents of **dist/** to **gh-pages**. Deploy all generated assets with `index.html`. Pushing source changes to **main** alone does not redeploy the site. Keep Pages pointed at **gh-pages**: raw source files require Vite and will not run directly on GitHub Pages.
+
 ## Temporary public link
 
 You can expose the production game over HTTPS with a Cloudflare quick tunnel. Keep the serving PC awake and online; stopping the preview/tunnel or restarting the PC ends the session. The leaderboard remains local to each visitor's browser.
